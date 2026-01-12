@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>PUBG Nick Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      background: #22c55e;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .nick {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>🎮 PUBG Nick Generator</h1>
+  <p>Нажми кнопку и получи ник</p>
+
+  <button onclick="generateNick()">Сгенерировать</button>
+
+  <div class="nick" id="nick"></div>
+
+  <script>
+    const words1 = [
+      "Dark","Ice","Ghost","Shadow","Bullet",
+      "Kill","Storm","Night","Toxic","Black"
+    ];
+
+    const words2 = [
+      "Wolf","Sniper","Hunter","Reaper",
+      "Killer","Phantom","Viper","Rogue"
+    ];
+
+    function generateNick() {
+      const w1 = words1[Math.floor(Math.random() * words1.length)];
+      const w2 = words2[Math.floor(Math.random() * words2.length)];
+      const number = Math.floor(Math.random() * 999);
+
+      document.getElementById("nick").textContent =
+        w1 + w2 + number;
+    }
+  </script>
+
+</body>
+</html>
