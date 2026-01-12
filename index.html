@@ -3,57 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <title>PUBG Nick Generator</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
+      background: white;
+      color: black;
       text-align: center;
-      padding: 40px;
+      padding: 50px;
     }
-    button {
-      background: #22c55e;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 6px;
+
+    h1 {
+      font-size: 44px;
+      margin-bottom: 10px;
     }
-    .nick {
+
+    p {
       font-size: 22px;
-      margin-top: 20px;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 12px;
+      margin-top: 25px;
+    }
+
+    .nick-list {
+      margin-top: 40px;
+      font-size: 28px;
+      line-height: 1.9;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎮 PUBG Nick Generator</h1>
-  <p>Нажми кнопку и получи ник</p>
+<h1>🎮 PUBG Nick Generator</h1>
+<p>Много ников. Жёстко. По-братски.</p>
 
-  <button onclick="generateNick()">Сгенерировать</button>
+<button onclick="generateNicks()">Сгенерировать</button>
 
-  <div class="nick" id="nick"></div>
+<div class="nick-list" id="nicks"></div>
 
-  <script>
-    const words1 = [
-      "Dark","Ice","Ghost","Shadow","Bullet",
-      "Kill","Storm","Night","Toxic","Black"
-    ];
+<script>
+  // ===== ПРЕФИКСЫ =====
+  const prefixDark = ["Dark", "Black", "Night", "Shadow", "Dead", "Cold", "Silent"];
+  const prefixPower = ["Mad", "Wild", "Feral", "Angry", "Savage", "Brutal"];
+  const prefixElite = ["Elite", "Prime", "Alpha", "Ultra", "Royal"];
+  const prefixStreet = ["Dirty", "Bloody", "Ruthless", "Hard"];
 
-    const words2 = [
-      "Wolf","Sniper","Hunter","Reaper",
-      "Killer","Phantom","Viper","Rogue"
-    ];
+  // ===== ОСНОВА =====
+  const coreAnimal = ["Wolf", "Tiger", "Raven", "Viper", "Panther", "Eagle"];
+  const coreWar = ["Sniper", "Reaper", "Hunter", "Shooter", "Killer", "Raider"];
+  const coreGhost = ["Phantom", "Ghost", "Specter", "Shade"];
+  const coreStreet = ["Gangsta", "Outlaw", "Rogue", "Bandit"];
 
-    function generateNick() {
-      const w1 = words1[Math.floor(Math.random() * words1.length)];
-      const w2 = words2[Math.floor(Math.random() * words2.length)];
-      const number = Math.floor(Math.random() * 999);
+  // ===== СУФФИКСЫ =====
+  const suffixTeam = ["Squad", "Crew", "Team", "Unit", "Force"];
+  const suffixClan = ["Clan", "Brotherhood", "Family"];
+  const suffixSolo = ["Solo", "OneMan", "Lone"];
 
-      document.getElementById("nick").textContent =
-        w1 + w2 + number;
+  // ===== СТИЛИ =====
+  const styleClean = ["", ""];
+  const styleSharp = ["×", "乂", "彡"];
+  const styleWide = ["", " "];
+
+  // ===== УТИЛИТЫ =====
+  function r(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function generateNick() {
+    return (
+      r(prefixDark.concat(prefixPower, prefixElite, prefixStreet)) + " " +
+      r(coreAnimal.concat(coreWar, coreGhost, coreStreet)) + " " +
+      r(suffixTeam.concat(suffixClan, suffixSolo))
+    );
+  }
+
+  function generateNicks() {
+    let out = "";
+    for (let i = 0; i < 15; i++) {
+      out += generateNick() + "<br>";
     }
-  </script>
+    document.getElementById("nicks").innerHTML = out;
+  }
+</script>
 
 </body>
 </html>
