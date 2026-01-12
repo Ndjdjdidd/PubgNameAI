@@ -15,11 +15,7 @@
 
     h1 {
       font-size: 44px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 22px;
+      margin-bottom: 20px;
     }
 
     button {
@@ -44,7 +40,6 @@
 <body>
 
 <h1>🎮 PUBG Nick Generator</h1>
-<p>Много ников. Жёстко. По-братски.</p>
 
 <button onclick="generateNicks()">Сгенерировать</button>
 
@@ -52,46 +47,37 @@
 
 <script>
   // ===== ПРЕФИКСЫ =====
-  const prefixDark = ["Dark", "Black", "Night", "Shadow", "Dead", "Cold", "Silent"];
-  const prefixPower = ["Mad", "Wild", "Feral", "Angry", "Savage", "Brutal"];
-  const prefixElite = ["Elite", "Prime", "Alpha", "Ultra", "Royal"];
-  const prefixStreet = ["Dirty", "Bloody", "Ruthless", "Hard"];
+  const prefixDark = ["Dark","Black","Night","Shadow","Dead","Cold","Silent"];
+  const prefixPower = ["Mad","Wild","Feral","Angry","Savage","Brutal"];
+  const prefixElite = ["Elite","Prime","Alpha","Ultra","Royal"];
+  const prefixStreet = ["Dirty","Bloody","Ruthless","Hard"];
 
   // ===== ОСНОВА =====
-  const coreAnimal = ["Wolf", "Tiger", "Raven", "Viper", "Panther", "Eagle"];
-  const coreWar = ["Sniper", "Reaper", "Hunter", "Shooter", "Killer", "Raider"];
-  const coreGhost = ["Phantom", "Ghost", "Specter", "Shade"];
-  const coreStreet = ["Gangsta", "Outlaw", "Rogue", "Bandit"];
+  const coreAnimal = ["Wolf","Tiger","Raven","Viper","Panther","Eagle"];
+  const coreWar = ["Sniper","Reaper","Hunter","Shooter","Killer","Raider"];
+  const coreGhost = ["Phantom","Ghost","Specter","Shade"];
+  const coreStreet = ["Gangsta","Outlaw","Rogue","Bandit"];
 
   // ===== СУФФИКСЫ =====
-  const suffixTeam = ["Squad", "Crew", "Team", "Unit", "Force"];
-  const suffixClan = ["Clan", "Brotherhood", "Family"];
-  const suffixSolo = ["Solo", "OneMan", "Lone"];
-
-  // ===== СТИЛИ =====
-  const styleClean = ["", ""];
-  const styleSharp = ["×", "乂", "彡"];
-  const styleWide = ["", " "];
+  const suffixTeam = ["Squad","Crew","Team","Unit","Force"];
+  const suffixClan = ["Clan","Brotherhood","Family"];
+  const suffixSolo = ["Solo","OneMan","Lone"];
 
   // ===== УТИЛИТЫ =====
-  function r(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+  function r(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function generateNick(){
+    return r(prefixDark.concat(prefixPower,prefixElite,prefixStreet))+
+           r(coreAnimal.concat(coreWar,coreGhost,coreStreet))+
+           r(suffixTeam.concat(suffixClan,suffixSolo));
   }
 
-  function generateNick() {
-    return (
-      r(prefixDark.concat(prefixPower, prefixElite, prefixStreet)) + " " +
-      r(coreAnimal.concat(coreWar, coreGhost, coreStreet)) + " " +
-      r(suffixTeam.concat(suffixClan, suffixSolo))
-    );
-  }
-
-  function generateNicks() {
-    let out = "";
-    for (let i = 0; i < 15; i++) {
-      out += generateNick() + "<br>";
+  function generateNicks(){
+    let out="";
+    for(let i=0;i<15;i++){
+      out+=generateNick()+"<br>";
     }
-    document.getElementById("nicks").innerHTML = out;
+    document.getElementById("nicks").innerHTML=out;
   }
 </script>
 
